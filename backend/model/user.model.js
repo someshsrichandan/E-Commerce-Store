@@ -37,7 +37,6 @@ const userSchema = mongoose.Schema({
 
 },{timeStamps: true});
 
-const User = mongoose.model("User", userSchema);
 
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")){
@@ -57,5 +56,6 @@ userSchema.methods.matchPassword = async function(password){
 };
 
 
+const User = mongoose.model("User", userSchema);
 
 export default User;
