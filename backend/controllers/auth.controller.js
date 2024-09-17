@@ -35,6 +35,7 @@ export const signup = async (req, res) => {
         }
         const user = await User.create({name, email, password});
 
+        //authenticate user
         const {accessToken, refreshToken} = generateToken(user._id);
         await storeRefreshToken(user._id, refreshToken);
         setCookie(res, accessToken, refreshToken);
@@ -52,6 +53,21 @@ export const signup = async (req, res) => {
 export const login = (req, res) => {
     res.send('Hello from auth  login controller');
 };
-export const logout = (req, res) => {
-    res.send('Hello from auth logout controller');
+export const logout = async (req, res) => {
+    try {
+
+        const refreshToken = req.cookies.refresh_token;
+        
+        if(refreshToken){
+            const decode =  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+            
+            await redis.del(`refresh_token:${decode.userId}`);
+        }
+        res.clearCookie("access_token");
+        res.clearCookie("refresh_token");
+        res.status(200).json({message: "Logout successfully"});
+        
+    } catch (error) {
+        res.status(500).json({message:"server error",error: error.message});
+    }
 };
