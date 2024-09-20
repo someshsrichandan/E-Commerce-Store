@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productRouter);
+app.use('/api/cart', cartRouter);
 
 
 
