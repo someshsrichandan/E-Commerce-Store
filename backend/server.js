@@ -5,6 +5,7 @@ import productRouter from './routes/product.route.js';
 import cartRouter from './routes/cart.route.js';
 import couponRouter from './routes/coupon.route.js';
 import paymentsRouter from './routes/payments.route.js';
+import analyticsRouter from './routes/analytics.route.js';
 import { connecDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
 
@@ -25,6 +26,7 @@ app.use('/api/products', productRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/coupons', couponRouter);
 app.use('/api/payments', paymentsRouter);
+app.use('/api/analytics' , analyticsRouter);
 
 
 
