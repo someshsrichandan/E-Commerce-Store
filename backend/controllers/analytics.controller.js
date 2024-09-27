@@ -31,3 +31,13 @@ export const getAnalyticsData = async () => {
         throw new Error("Internal server error");
     }
 }
+
+export const getDailySalesData = async (startDate, endDate) => {
+    try {
+        
+    } catch (error) {
+        console.log("error in getDailySalesData", error);
+        throw new Error("Internal server error");
+        
+    }
+}
