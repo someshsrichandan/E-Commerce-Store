@@ -56,7 +56,7 @@ export const getDailySalesData = async (startDate, endDate) => {
        ])
        const dataArray = getDataInRange(startDate, endDate);
        return dataArray.map((date) => {
-           const data = dailSalesData.find((data) => data._id === date) || { totalSales: 0, totalRevenue: 0 };
+           const data = dailSalesData.find((data) => data._id === date);
            return {
                date,
                 totalSales: foundData?.sales || 0,
